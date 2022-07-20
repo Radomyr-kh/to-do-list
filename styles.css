@@ -1,0 +1,55 @@
+body {
+  margin: auto;
+  padding: 0;
+  background: #dfdfdf;
+}
+
+.to-do-list-container {
+  padding: 20px;
+  width: 330px;
+  margin: 0 auto;
+  margin-top: 40px;
+  background: white;
+  border-radius: 5px;
+}
+
+input {
+  display: inline-block;
+  padding: 4px 15px 4px 5px;
+}
+#addItem {
+  display: inline-block;
+  background-color: black;
+  color: #ffffff;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 2px;
+  padding: 5px 15px;
+  user-select: none;
+}
+
+#addItem:hover {
+  cursor: pointer;
+}
+
+ol {
+  padding-left: 20px;
+}
+
+ol li {
+  padding: 5px;
+  color: #000;
+}
+
+ol li:nth-child(even) {
+  background: #dfdfdf;
+}
+
+/*li:hover{cursor: pointer;}*/
+li:hover {
+  cursor: move;
+}
+
+.strike {
+  text-decoration: line-through;
+}

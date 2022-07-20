@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- jQuery UI -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script>
+
+$(document).ready(function(){
+
+	// add checkboxes
+	$("#addCheckbox").click(function(){
+		if (!$("div.userText").parent().is("ol")){
+			$("div.userText").wrap("<ol></ol>");
+
+		}
+		$('.userText p').each(function() {
+		    $(this).replaceWith("<li>" + "<input type='checkbox'>" + $(this).html()+"</li>")
+		});
+
+		//add sortable 
+		$('div.userText').sortable();
+		$("div.userText").sortable("enable");
+	});
+
+	// remove checkboxes
+	$("#removeCheckbox").click(function(){
+
+		// checking that the parent tag is "ol" 
+		if ($("div.userText").parent().is("ol")){
+			$("div.userText").unwrap();
+		} 
+		$('.userText li').each(function() {
+		    $(this).replaceWith("<p>" + $(this).html()+"</p>")
+		});
+		$('.userText input:checkbox').each(function() {
+		    $(this).replaceWith("")
+		});
+
+		//remove sortable 
+		$("div.userText").sortable("disable");
+		
+		// ($("div.userText")function() {
+	 //    $("#elem").sortable("destroy"); //call widget-function destroy
+	 //    $("#elem li").removeClass('ui-state-default');
+	 //    $("#elem li span").remove();
+		// }
+
+
+		// $('ol').each(function() {
+		//     $(this).replaceWith("<div>" + $(this).html()+"</div>")
+		// });
+		// $("<li><input type='checkbox'>").each(function() {
+		//     $(this).replaceWith("<p>" + $(this).html() + "</p>")
+		// });
+		// $(".userText li").text();
+	
+		// $('.userText p').each(function() {
+		//     $(this).replaceWith("<li>" + "<input type='checkbox'>" + $(this).html()+"</li>")
+		// });
+	});
+
+
+	$(document).on('click','input:checkbox', function(){
+		$(this).parent().addClass("strike").fadeOut('slow');  
+
+		// alert when all tasks are completed 
+		let x = $('div.userText').children(':visible').length;
+		if(x == 1) {
+			// delay for alert
+			setTimeout(function(){
+				alert('You have done everything');
+			},1000) 	
+		} 
+	});
+
+});
+
+
+</script>
+<link rel="stylesheet" href="TDL-3.css">
+<style>
+	.button {
+	display: inline-block;
+	background-color: black;
+	color:#ffffff;
+	border-radius: 5px;
+	text-align:center;
+	margin-top:2px;
+	padding: 5px 15px;
+	user-select: none;
+	cursor: pointer;
+
+}
+</style>
+</head>
+<body>
+<div class="to-do-list-container">
+
+
+<h1>Add Checkboxes</h1>
+<p><em>Click and drag to reorder, check the item to cross it off.</em></p>
+
+<div id="addCheckbox" class="button">Add checkboxes</div>
+<div id="removeCheckbox" class="button">Remove checkboxes</div>
+
+<div class="userText">
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aspernatur quibusdam id doloribus ipsa accusamus, atque! Culpa nulla provident nemo perspiciatis consequatur corrupti consequuntur, in, odit maiores vero, rerum minus.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aspernatur quibusdam id doloribus ipsa accusamus, atque! Culpa nulla provident nemo perspiciatis consequatur corrupti consequuntur, in, odit maiores vero, rerum minus.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aspernatur quibusdam id doloribus ipsa accusamus, atque! Culpa nulla provident nemo perspiciatis consequatur corrupti consequuntur, in, odit maiores vero, rerum minus.</p>
+</div>
+
+</div>
+</body>
+</html>
+
+
