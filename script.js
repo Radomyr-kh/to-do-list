@@ -1,18 +1,18 @@
 let mylocalStorage = JSON.parse(localStorage.getItem("data")) || [];
-const checkLocalStorage = function () {
+const checkLocalStorage = () => {
   if (mylocalStorage) {
-    mylocalStorage.forEach(function (x) {
+    mylocalStorage.forEach((x) => {
       $("ol").append(`<li><input type='checkbox' id='${x.id}'>${x.value}</li>`);
     });
   }
 };
 checkLocalStorage();
 
-const updateLocalStorage = function () {
+const updateLocalStorage = () => {
   localStorage.setItem("data", JSON.stringify(mylocalStorage));
 };
 
-const addItem = function () {
+const addItem = () => {
   const inputBox = $("input:text").val();
   const timeId = new Date().getTime();
   if (!inputBox.trim()) {
@@ -31,11 +31,11 @@ const addItem = function () {
   }
 };
 
-$(document).ready(function () {
+$(document).ready(() => {
   // Add item on click
   $("#addItem").click(addItem);
   // Add item after pressing Enter key
-  $("input:text").keyup(function (event) {
+  $("input:text").keyup((event) => {
     if (event.keyCode === 13) {
       addItem();
     }
@@ -44,7 +44,7 @@ $(document).ready(function () {
   $(document).on("click", "input:checkbox", function () {
     $(this).parent().addClass("strike").fadeOut("slow");
     let selectedItem = event.target.id;
-    mylocalStorage = mylocalStorage.filter(function (x) {
+    mylocalStorage = mylocalStorage.filter((x) => {
       return x.id !== selectedItem;
     });
     updateLocalStorage();
@@ -52,7 +52,7 @@ $(document).ready(function () {
     let x = $("ol").children(":visible").length;
     if (x === 1) {
       // delay for alert
-      setTimeout(function () {
+      setTimeout(() => {
         alert("You have done everything!");
       }, 1000);
     }
